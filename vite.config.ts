@@ -11,3 +11,15 @@ export default defineConfig(({ mode }) => {
     }
   };
 });
+async function askGemini(prompt) {
+  const response = await fetch("/api/gemini", {
+    method: "POST",
+    body: JSON.stringify({ prompt })
+  })
+
+  const data = await response.json()
+  return data.text
+}
+
+// Example usage
+askGemini("Write a short motivational quote").then(console.log)
